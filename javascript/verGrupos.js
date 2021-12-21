@@ -5,6 +5,7 @@ function ver(){
     let tbody = document.getElementById("tbody");
 
     for (let i=0; i<tamano.length; i++){
+        ///GENERANDO LA TABLA PARA VER LOS GRUPOS///
         let tr = document.createElement("tr");
         tbody.appendChild(tr);
 
@@ -34,10 +35,9 @@ function ver(){
         let tdDelete = document.createElement("td");
         tr.appendChild(tdDelete)
         let eliminar = document.createElement("a");
-        eliminar.setAttribute("href", "../javascript/eliminar.html?id"+"="+i);
+        eliminar.setAttribute("href", "../htmlFiles/eliminar.html?id"+"="+i);
         eliminar.textContent = "Delete";
         eliminar.setAttribute("class", "btn btn-danger")
         tdDelete.appendChild(eliminar);
     }
-
 }

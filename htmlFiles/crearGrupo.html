@@ -30,29 +30,33 @@
 <br>
 
 <!--FORMULARIO-->
-<div class="position-absolute top-50 start-50 translate-middle"><br><br><br>
-    <h3>Creando grupo</h3>
+<div class="" style="margin-left: 6em; margin-right: 6em">
+    <!--Evento onsubmit-->
+    <form id="FomularioCrear" onsubmit="crear_grupo()">
+        <fieldset>
+            <legend><strong>Creando Grupo de Películas</strong></legend>
+            <div>
+                <div class="mb-3">
+                    <label for="genero" class="form-label" >Género de peliculas</label>
+                    <input type="text" class="form-control" id="genero" required pattern="[A-Za-z]{4,10}" style="width: 30em">
+                    <div class="form-text">Solo letras, entre 4 y 10 caracteres y sin espacios</div>
+                </div>
 
-    <form>
-        <div class="mb-3">
-            <label for="genero" class="form-label">Género de peliculas</label>
-            <input type="text" class="form-control" id="genero">
-            <div class="form-text">Solo acepta...</div>
-        </div>
-
-        <div class="mb-3">
-            <label for="creador" class="form-label">Autor</label>
-            <input type="text" class="form-control" id="creador">
-            <div class="form-text">Solo acepta...</div>
-        </div>
-
-
-        <!--PELICULAS CON WEB-SERVICE-->
-        <h5>Elige las peliculas: </h5>
-        <div class="form-check" id="container"></div>
+                <div class="mb-3">
+                    <label for="creador" class="form-label">Autor del grupo</label>
+                    <input type="text" class="form-control" id="creador" required pattern="[A-Z][A-Za-z\s]{6,}" style="width: 30em">
+                    <div class="form-text">Solo letras, al menos 6 caracteres empezando por una mayúscula<br>Puede tener espacios</div>
+                </div>
+            </div>
+            <!--PELICULAS CON WEB-SERVICE-->
+            <div>
+                <h5>Elige las peliculas: </h5>
+                <div class="form-check" id="container"></div>
+            </div>
+        </fieldset>
 
         <!--BOTONES-->
-        <button class="btn btn-primary" onclick="crear_grupo();">Crear grupo</button>
+        <button class="btn btn-primary">Crear grupo</button>
         <a class="btn btn-primary" href="verGrupo.html">Ver grupos</a>
     </form>
 </div>

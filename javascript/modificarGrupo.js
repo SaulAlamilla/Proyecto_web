@@ -1,13 +1,11 @@
 ////MOSTRAR EN UN CHECKLIST LAS PELICULAS CON EL WEB SERVICE/////
 function onload(){
     window.localStorage.removeItem('pelicula');
-
     const url = "https://ghibliapi.herokuapp.com/films";
     fetch(url)
         .then(response => response.json())
         .then(data => {
             for (let i=0; i<10; i++) {
-                //console.log(data[i].title);
                 let input = document.createElement("input");
                 input.setAttribute("class", "form-check-input");
                 input.setAttribute("type","checkbox");
@@ -23,7 +21,6 @@ function onload(){
                 container.appendChild(label);
                 let br = document.createElement("br");
                 container.appendChild(br);
-
             }
         })
     setTimeout(colocarDatos, 1000);
@@ -36,19 +33,15 @@ function colocarDatos(){
     let id = urlLocal.searchParams.get("id");
 
     let autor = JSON.parse(localStorage.getItem("grupos"));
-    //console.log(autor[id].peliculas[0]);
-
 
     document.getElementById("creador").value = autor[id].creador;
     document.getElementById("genero").value = autor[id].genero;
 
     let checks = document.getElementsByClassName("form-check-input");
     for (let i=0; i<10; i++){
-        //console.log("ok");
         for (let j=0; j<autor[id].peliculas.length;j++){
             if (checks[i].value == autor[id].peliculas[j]){
                 checks[i].checked = true;
-                //console.log("Aqui "+j);
             }
         }
     }
@@ -62,8 +55,6 @@ function modificar(){
     let id = urlLocal.searchParams.get("id");
 
     let autor = JSON.parse(localStorage.getItem("grupos"));
-    //console.log(autor[id].peliculas[0]);
-
 
     let creadorN = document.getElementById("creador").value;
     let generoN = document.getElementById("genero").value;
@@ -73,20 +64,19 @@ function modificar(){
     for (let i=0; i<10; i++){
         if(checks[i].checked){
             peliculasN.push(checks[i].value);
-            //console.log(checks[i].value);
         }
     }
     autor[id].creador = creadorN;
     autor[id].genero = generoN;
     autor[id].peliculas = peliculasN;
 
+    //import Film from "./crear_grupo";
     let grupo = new Film(autor[id].genero, autor[id].peliculas);
     grupo.set_creador = autor[id].creador;
 
-    grupo.localS(grupo, id);
-    //location.href = "verGrupo.html";
+    grupo.modifyLS(grupo, id);
 }
-let movies;
+
 let temp = new Array();
 class Film{
     #creador="";
@@ -102,7 +92,7 @@ class Film{
     }
 
     //ALMACENANDO EN EL LOCALSTORAGE CON AYUDA DEL OBJETO CREADO
-    localS(grupo, id) {
+    modifyLS(grupo, id) {
         let movieGroup = {
             "creador" : grupo.get_creador,
             "genero" : grupo.genero,
@@ -113,8 +103,6 @@ class Film{
         }
         temp[id] = movieGroup;
         localStorage.setItem("grupos", JSON.stringify(temp));
-
-        console.log(temp);
-        movies = JSON.parse(localStorage.getItem("grupos"));
     }
 }
+

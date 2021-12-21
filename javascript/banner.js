@@ -4,10 +4,16 @@ function loadBanner(){
         card.setAttribute("class", "card");
         card.setAttribute("style", "width: 18rem; display: inline-block")
 
+        /*
         let img = document.createElement("img");
         img.setAttribute("class", "card-img-top");
         img.setAttribute("id", "image"+i);
-        img.setAttribute("alt", "...");
+        img.setAttribute("alt", "...");*/
+
+        let divImg = document.createElement("div")
+        divImg.setAttribute("class", "card-img-top");
+        divImg.setAttribute("id","image"+i);
+        divImg.setAttribute("alt", "...");
 
         let card_body = document.createElement("div");
         card_body.setAttribute("class", "card-body");
@@ -18,11 +24,12 @@ function loadBanner(){
         let a = document.createElement("button");
         a.innerHTML = "Ver detalles";
         a.setAttribute("class", "btn btn-primary")
+        ///EVENTO ONCLICK
         a.setAttribute("onclick", "showdetails("+i+");")
 
         let container = document.getElementById("container");
         container.appendChild(card);
-        card.appendChild(img);
+        card.appendChild(divImg);
         card.appendChild(card_body);
 
         card_body.appendChild(h5);
@@ -38,14 +45,19 @@ function load(){
         .then(data => {
             for (let i=0; i<10; i++) {
                 document.getElementById("nombre"+i).innerHTML = data[i].title;
-                //console.log(data[i].image);
 
                 const urlImage = data[i].image;
                 fetch(urlImage)
                     .then(response => response.blob())
                     .then(imageBlob => {
+                        /*
                         const imageObjectURL = URL.createObjectURL(imageBlob);
-                        document.getElementById("image"+i).src = imageObjectURL;
+                        document.getElementById("image"+i).src = imageObjectURL;*/
+                        const imageObjectURL = URL.createObjectURL(imageBlob);
+                        const image = new Image();
+                        image.src = imageObjectURL
+                        image.style.width = "280px";
+                        document.getElementById("image"+i).appendChild(image);
                     })
             }
         })

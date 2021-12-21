@@ -1,4 +1,3 @@
-let movies;
 let temp = new Array();
 class Film{
     #creador="";
@@ -25,13 +24,17 @@ class Film{
         }
         temp.push(movieGroup);
         localStorage.setItem("grupos", JSON.stringify(temp));
-
-        console.log(temp);
-        movies = JSON.parse(localStorage.getItem("grupos"));
     }
 }
 ////SE CREA EL GRUPO DE PELICULAS/////
 function crear_grupo(){
+    let formulario = document.getElementById("FomularioCrear");
+    if (formulario){
+        console.log("Si");
+    }
+    else {
+        console.log("no");
+    }
     let creador = document.getElementById("creador").value;
     let genero = document.getElementById("genero").value;
     let checks = document.getElementsByClassName("form-check-input");
@@ -40,7 +43,6 @@ function crear_grupo(){
     for (let i=0; i<10; i++){
         if(checks[i].checked){
             peliculas.push(checks[i].value);
-            //console.log(checks[i].value);
         }
     }
     let grupo = new Film(genero, peliculas);
@@ -59,7 +61,6 @@ function onload(){
         .then(response => response.json())
         .then(data => {
             for (let i=0; i<10; i++) {
-                //console.log(data[i].title);
                 let input = document.createElement("input");
                 input.setAttribute("class", "form-check-input");
                 input.setAttribute("type","checkbox");

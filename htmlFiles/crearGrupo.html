@@ -22,7 +22,6 @@
                 <a class="nav-link" href="crearGrupo.html">Crear grupo</a>
                 <a class="nav-link" href="verGrupo.html">Ver grupos</a>
                 <a class="nav-link" href="contacto.html">Contacto</a>
-                <a class="nav-link disabled">Disabled</a>
             </div>
         </div>
     </div>
@@ -44,7 +43,7 @@
 
                 <div class="mb-3">
                     <label for="creador" class="form-label">Autor del grupo</label>
-                    <input type="text" class="form-control" id="creador" required pattern="[A-Z][A-Za-z\s]{6,}" style="width: 30em">
+                    <input type="text" class="form-control" id="creador" required pattern="^([A-Z])([a-zA-Z]+)(\s[a-zA-Z]+)*$" minlength="6" style="width: 30em">
                     <div class="form-text">Solo letras, al menos 6 caracteres empezando por una mayúscula<br>Puede tener espacios</div>
                 </div>
             </div>

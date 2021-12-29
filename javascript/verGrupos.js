@@ -1,7 +1,6 @@
 function ver(){
-    console.log(JSON.parse(localStorage.getItem("grupos")));
+    //Variable tamano para saber la longitud y valores específicos del arreglo en el localstorage
     let tamano = JSON.parse(localStorage.getItem("grupos"));
-    console.log(tamano.length);
     let tbody = document.getElementById("tbody");
 
     for (let i=0; i<tamano.length; i++){

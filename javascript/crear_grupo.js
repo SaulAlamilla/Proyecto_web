@@ -1,3 +1,4 @@
+//Clase para crear un grupo de peliculas que incluye el nombre del autor y el nombre del grupo
 let temp = new Array();
 class Film{
     #creador="";
@@ -11,7 +12,6 @@ class Film{
     set set_creador(creador){
         this.#creador = creador
     }
-
     //ALMACENANDO EN EL LOCALSTORAGE CON AYUDA DEL OBJETO CREADO
     localS(grupo) {
         let movieGroup = {
@@ -28,24 +28,21 @@ class Film{
 }
 ////SE CREA EL GRUPO DE PELICULAS/////
 function crear_grupo(){
-    let formulario = document.getElementById("FomularioCrear");
-    if (formulario){
-        console.log("Si");
-    }
-    else {
-        console.log("no");
-    }
+    //Se obtienen los valores de los input
     let creador = document.getElementById("creador").value;
     let genero = document.getElementById("genero").value;
     let checks = document.getElementsByClassName("form-check-input");
 
+    //Obtener las peliculas seleccionadas
     let peliculas = new Array();
     for (let i=0; i<10; i++){
         if(checks[i].checked){
             peliculas.push(checks[i].value);
         }
     }
+    //Crear objeto
     let grupo = new Film(genero, peliculas);
+    //Asigar el creado con ayuda del set
     grupo.set_creador = creador;
 
     //ALMACENAR EN EL LOCALSTOGARE

@@ -1,5 +1,5 @@
 function detailsMovie(){
-    console.log("ok");
+    //Aqui se obtiene los datos filtrados una películas específica
     const url = "https://ghibliapi.herokuapp.com/films";
     fetch(url)
         .then(response => response.json())
@@ -12,7 +12,6 @@ function detailsMovie(){
                                     <br>Productora: ${data[localStorage.getItem("pelicula")].producer}
                                     <br>Lanzamiento: ${data[localStorage.getItem("pelicula")].release_date}
                                     <br>Duración: ${data[localStorage.getItem("pelicula")].running_time} minutos`;
-
             const urlImage = data[localStorage.getItem("pelicula")].movie_banner;
             fetch(urlImage)
                 .then(response => response.blob())

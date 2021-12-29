@@ -1,4 +1,4 @@
-////MOSTRAR EN UN CHECKLIST LAS PELICULAS CON EL WEB SERVICE/////
+////MOSTRAR EN UN CHECKLIST LAS PELICULAS CON EL WEB SERVICE////
 function onload(){
     window.localStorage.removeItem('pelicula');
     const url = "https://ghibliapi.herokuapp.com/films";
@@ -31,12 +31,11 @@ function colocarDatos(){
     let input_string = window.location.href;
     let urlLocal = new URL(input_string);
     let id = urlLocal.searchParams.get("id");
-
     let autor = JSON.parse(localStorage.getItem("grupos"));
 
+    //Colocar los datos del registro a modificar
     document.getElementById("creador").value = autor[id].creador;
     document.getElementById("genero").value = autor[id].genero;
-
     let checks = document.getElementsByClassName("form-check-input");
     for (let i=0; i<10; i++){
         for (let j=0; j<autor[id].peliculas.length;j++){
@@ -48,18 +47,18 @@ function colocarDatos(){
 }
 
 function modificar(){
-    console.log("Hola");
     //OBTENER PARAMETROS DE LA URL
     let input_string = window.location.href;
     let urlLocal = new URL(input_string);
     let id = urlLocal.searchParams.get("id");
 
+    //Obtener los nuevos valores ingresados en los input
     let autor = JSON.parse(localStorage.getItem("grupos"));
-
     let creadorN = document.getElementById("creador").value;
     let generoN = document.getElementById("genero").value;
     let checks = document.getElementsByClassName("form-check-input");
 
+    //Crear un nuevo grupo (array) de peliculas con las seleccionadas
     let peliculasN = new Array();
     for (let i=0; i<10; i++){
         if(checks[i].checked){
@@ -70,10 +69,9 @@ function modificar(){
     autor[id].genero = generoN;
     autor[id].peliculas = peliculasN;
 
-    //import Film from "./crear_grupo";
+    //Crear un nuevo objeto, pero ahora enviando específicamente los valores cambiados
     let grupo = new Film(autor[id].genero, autor[id].peliculas);
     grupo.set_creador = autor[id].creador;
-
     grupo.modifyLS(grupo, id);
 }
 

@@ -1,14 +1,10 @@
 function loadBanner(){
+    /*CON ESTE FOR SE DESPLEGARAN TODAS LAS TARJETAS CREADAS CON BOOTSTRAP PARA MOSTRAR
+    LAS PELICULAS CON EL WEB SERVICE*/
     for (let i=0; i<10; i++) {
         let card = document.createElement("div");
         card.setAttribute("class", "card");
         card.setAttribute("style", "width: 18rem; display: inline-block")
-
-        /*
-        let img = document.createElement("img");
-        img.setAttribute("class", "card-img-top");
-        img.setAttribute("id", "image"+i);
-        img.setAttribute("alt", "...");*/
 
         let divImg = document.createElement("div")
         divImg.setAttribute("class", "card-img-top");
@@ -35,6 +31,7 @@ function loadBanner(){
         card_body.appendChild(h5);
         card_body.appendChild(a);
     }
+    //SE MANDA A LLAMAR EL API CON LA FUNCION load();
     load()
 }
 //USO DEL WEB SERVICE
@@ -50,9 +47,6 @@ function load(){
                 fetch(urlImage)
                     .then(response => response.blob())
                     .then(imageBlob => {
-                        /*
-                        const imageObjectURL = URL.createObjectURL(imageBlob);
-                        document.getElementById("image"+i).src = imageObjectURL;*/
                         const imageObjectURL = URL.createObjectURL(imageBlob);
                         const image = new Image();
                         image.src = imageObjectURL
